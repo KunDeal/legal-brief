@@ -1,0 +1,31 @@
+{
+  "name": "legal-brief",
+  "version": "0.1.0",
+  "description": "Codex companion manifest for the legal-brief plugin. Drives Codex 5.5 tasks (verify, draft, apply, revise) inside the legal-brief drafting pipeline via the vendored codex-companion runtime.",
+  "author": {
+    "name": "kundil"
+  },
+  "license": "MIT",
+  "keywords": [
+    "legal",
+    "codex",
+    "multi-model",
+    "document-drafting"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Legal Brief",
+    "shortDescription": "Multi-agent Russian legal document drafting pipeline.",
+    "longDescription": "Legal Brief turns a folder of case materials into a finished Russian procedural document through a 7-stage multi-model pipeline (Sonnet summary, Codex verify/draft/apply, Opus review and adversarial roles).",
+    "developerName": "kundil",
+    "category": "Productivity",
+    "capabilities": [
+      "Write",
+      "Review"
+    ],
+    "defaultPrompt": [
+      "Составь процессуальный документ из папки с делом.",
+      "Запусти legal-brief по этой папке."
+    ]
+  }
+}
