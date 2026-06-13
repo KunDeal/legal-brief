@@ -10,22 +10,23 @@
 
 ### 1. mark-all-the-shit-down (конвертация документов, стадия 0)
 
-Python CLI для конвертации PDF/DOCX/изображений и т. п. в Markdown.
+Python-инструмент для конвертации PDF/DOCX/изображений и т. п. в Markdown. Устанавливается через официальный скрипт (клонирует репозиторий, устанавливает Python-зависимости, копирует bundled tessdata):
 
 ```bash
-pip install mark-all-the-shit-down
+curl -sSf https://raw.githubusercontent.com/strigov/mark-all-the-shit-down/main/install.sh | sh
 ```
 
-Требует `tesseract` с языковыми пакетами «русский» и «английский» для OCR сканов:
+Скрипт устанавливает инструмент в `~/.local/share/mark-all-the-stuff-down/`. Плагин вызывает его напрямую: `python3 ~/.local/share/mark-all-the-stuff-down/convert.py`.
+
+Для OCR сканов также требуется системный бинарь `tesseract` (языковые пакеты не нужны — tessdata для `rus+eng` идёт в комплекте):
 
 ```bash
 # macOS (Homebrew)
-brew install tesseract tesseract-lang
-# проверка наличия русского пакета:
-tesseract --list-langs | grep -E 'rus|eng'
-```
+brew install tesseract
 
-OCR выполняется инструментом внутренне с флагами `-l rus+eng`. Точка входа резолвится как `python -m mark_all_the_shit_down.convert`, либо CLI `matsd`, либо `python convert.py` в каталоге установки.
+# Ubuntu / Debian
+sudo apt install tesseract-ocr
+```
 
 ### 2. codex CLI (бэкенд Codex-задач, стадии 2/3/4/6)
 
