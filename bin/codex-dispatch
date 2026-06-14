@@ -24,7 +24,14 @@ resolve_companion() {
   if [ -n "$newest" ]; then echo "$newest"; return; fi
 
   local self_dir
-  self_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  local SOURCE="${BASH_SOURCE[0]}"
+  while [ -h "$SOURCE" ]; do
+    local DIR
+    DIR="$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)"
+    SOURCE="$(readlink "$SOURCE")"
+    case "$SOURCE" in /*) ;; *) SOURCE="$DIR/$SOURCE" ;; esac
+  done
+  self_dir="$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)"
   local dev_path="$self_dir/../vendor/codex-companion/scripts/codex-companion.mjs"
   if [ -f "$dev_path" ]; then echo "$dev_path"; return; fi
 
