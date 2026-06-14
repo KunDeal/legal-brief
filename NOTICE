@@ -1,0 +1,28 @@
+legal-brief
+Copyright (c) 2026 Ivan Kundil
+Licensed under the MIT License (see LICENSE).
+
+---
+
+This project incorporates code and architectural patterns from the following
+open-source projects:
+
+superpowers — Claude Code plugin framework
+Copyright (c) Jesse Vincent (obra)
+https://github.com/obra/superpowers
+Licensed under the MIT License.
+
+superpowers-strigov-ver — fork of superpowers
+Copyright (c) strigov
+https://github.com/strigov/superpowers
+Licensed under the MIT License.
+
+---
+
+This project distributes the following third-party component in vendor/:
+
+codex-companion
+Copyright (c) 2026 OpenAI
+Licensed under the Apache License, Version 2.0.
+A copy of the Apache License is included at vendor/codex-companion/LICENSE.
+The original NOTICE file is included at vendor/codex-companion/NOTICE.
