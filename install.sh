@@ -30,7 +30,7 @@ cat > "$COMMAND_FILE" <<EOF
 description: Составить процессуальный документ из папки с материалами дела через мульти-агентный конвейер.
 ---
 
-Прочитай файл \`$PLUGIN_DIR/skills/legal-brief/SKILL.md\` и выполни полный конвейер, описанный там: проведи материалы дела через стадии 0–6 (конвертация → резюме → проверка → черновик → 2 прохода рецензирования → состязательная проверка → финальная доработка). Веди \`_legal_brief/state.json\`. Все обращённые к пользователю сообщения — на русском.
+Прочитай файл \`$PLUGIN_DIR/skills/legal-brief/SKILL.md\` и выполни полный конвейер, описанный там: проведи материалы дела через стадии 0–7 (конвертация → резюме → проверка → черновик → 2 прохода рецензирования → состязательная проверка → финальная доработка → предподачные проверки). Веди \`_legal_brief/state.json\`. Все обращённые к пользователю сообщения — на русском.
 
 Перед первым вызовом Codex прочитай также \`$PLUGIN_DIR/skills/codex-invocation/SKILL.md\`.
 
@@ -38,6 +38,18 @@ Arguments (if any): \$ARGUMENTS
 EOF
 
 ok "Команда /legal-brief зарегистрирована → $COMMAND_FILE"
+
+# ── 1b. Симлинк codex-dispatch → ~/.local/bin ────────────────────────────────
+
+DISPATCH_TARGET="$PLUGIN_DIR/bin/codex-dispatch"
+DISPATCH_LINK="$HOME/.local/bin/codex-dispatch"
+if [ -f "$DISPATCH_TARGET" ]; then
+  mkdir -p "$HOME/.local/bin"
+  ln -sf "$DISPATCH_TARGET" "$DISPATCH_LINK"
+  ok "codex-dispatch → $DISPATCH_LINK"
+else
+  warn "bin/codex-dispatch не найден — Codex-вызовы могут не работать (проверьте репозиторий)"
+fi
 
 # ── 2. Проверка зависимостей ──────────────────────────────────────────────────
 

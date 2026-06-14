@@ -1,6 +1,6 @@
 ---
 name: codex-invocation
-description: How to invoke Codex CLI from Claude Code on this machine. Use when any workflow needs to dispatch a Codex task — codex-dispatch wrapper + --background + Monitor polling. Contains the exact wrapper, flags, polling loop, and stale-lock workaround. Read this before the first Codex call in a session, including from dev-orchestrator.
+description: How to invoke Codex CLI from Claude Code on this machine. Use when any workflow needs to dispatch a Codex task — codex-dispatch wrapper + --background + Monitor polling. Contains the exact wrapper, flags, polling loop, and stale-lock workaround. Read this before the first Codex call in a session.
 ---
 
 # Codex invocation (codex-dispatch wrapper, background-only)
@@ -90,7 +90,7 @@ Relay Codex's report to the next step verbatim (or summarize into the next promp
 
 - `--background` — return immediately with task id. **Mandatory.**
 - `--write` — Codex may modify files. Omit for review-only runs (default is read-only).
-- `--effort <low|medium|high|xhigh>` — reasoning effort. In dev-orchestrator: plan review = `xhigh`, implementation = `high`. Nothing lower.
+- `--effort <low|medium|high|xhigh>` — reasoning effort. Nothing lower than `high` for production tasks.
 - `--model <name>` — override the default model. The wrapper auto-pins `gpt-5.5` if you don't pass this; pass an explicit `--model` only to override. Override the wrapper default globally with `CODEX_DEFAULT_MODEL=...` in the env.
 - `--resume-last` — continue the previous Codex session in this repo. Use for follow-up rounds in review loops.
 - `--fresh` — force new session. Use when stale-lock prevents resume (see below).
